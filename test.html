@@ -4,6 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        .gradient-dashed-border {
+            position: relative;
+            padding: 20px;
+            border-radius: 20px;
+        }
+        .gradient-dashed-border:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 5px dashed transparent;
+            border-radius: 20px;
+            background: linear-gradient(to right, red, blue) border-box;
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) padding-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none; /* برای جلوگیری از تداخل با کلیک ها */
+        }
+    </style>
+</head>
+<body>
+    <div class="gradient-dashed-border">
+        محتوای داخلی
+    </div>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
         .gradient-border {
             border: 10px solid;
             border-image: linear-gradient(to right, red, blue) 1;
