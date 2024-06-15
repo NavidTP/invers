@@ -10,7 +10,51 @@
 </head>
 
 <body>
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .border-dashed-gradient {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      background: white;
+      padding: 20px; /* تنظیم فاصله داخلی برای نمایش بهتر حاشیه */
+      border: 10px solid transparent;
+      border-image: 
+        linear-gradient(
+          to right, 
+          red 10%, 
+          transparent 10%, 
+          transparent 20%, 
+          yellow 20%, 
+          yellow 30%, 
+          transparent 30%, 
+          transparent 40%, 
+          green 40%, 
+          green 50%, 
+          transparent 50%, 
+          transparent 60%, 
+          red 60%, 
+          red 70%, 
+          transparent 70%, 
+          transparent 80%, 
+          yellow 80%, 
+          yellow 90%, 
+          transparent 90%, 
+          transparent 100%
+        ) 10;
+      border-image-slice: 1;
+      border-radius: 15px; /* مقدار حاشیه گرد */
+    }
+  </style>
+</head>
+<body>
 
+<div class="border-dashed-gradient">این یک مثال است.</div>
+
+</body>
+</html>
   <div class="top-parent-div position-relative">
 
     <div class="position-absolute top-0 left-0 ml-10per top-container">
