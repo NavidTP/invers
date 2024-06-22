@@ -1,25 +1,23 @@
-.charity-description-box {
-  width: calc(100% - 32px);
-  max-width: 675px;
-  margin-top: 26px !important;
-  padding: 16px !important;
-  > div {
-    // margin-top: -18px;
-    display: flex;
-    justify-content: space-between;
-    div {
-      width: calc(50% - 8px);
-      p {
-        margin: 0px;
-        color: $Grey-Dark5;
-        font-size: 14px;
-        > span {
-          display: none;
-        }
-      }
-    }
-    .charity-desc-box-content {
-      font-family: $Medium;
-    }
-  }
-}
+const constraints = {
+        video: {
+          facingMode: { exact: "user" },
+          frameRate: 15,
+          biteRate: 100,
+          width: { exact: 300 },
+          height: { exact: 200 },
+          mimeType: "video/webm;codecs=vp8",
+          aspectRatio: { exact: 4 / 3 },
+        },
+        audio: true,
+        timeSlice: 1000,
+      };
+      window.navigator.mediaDevices
+        .getUserMedia(constraints)
+        .then(async function (stream) {
+          dispatch(register({ onlineCamera: stream }));
+          video.srcObject = stream;
+          video.play();
+        })
+        .catch(function () {
+          dispatch(register({ modal: true, toggle: getVideo }));
+        });
