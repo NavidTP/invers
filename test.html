@@ -1,5 +1,23 @@
-https://stackoverflow.com/questions/70016574/javascript-getusermedia-on-safari
 
-185.94.99.249:2083
-bdbrtjgj
-QL3u0pb1q7
+import React, { forwardRef, useImperativeHandle, useRef } from 'react';
+
+const InnerComponent = forwardRef((props, ref) => {
+  const innerDivRef = useRef(null);
+
+  useImperativeHandle(ref, () => ({
+    getInnerDiv: () => innerDivRef.current
+  }));
+
+  return (
+    <div>
+      <div ref={innerDivRef} style={{ height: '150px', backgroundColor: 'lightblue' }}>
+        المنت داخلی
+      </div>
+      <div style={{ height: '850px' }}>
+        محتوای دیگر
+      </div>
+    </div>
+  );
+});
+
+export default InnerComponent;
