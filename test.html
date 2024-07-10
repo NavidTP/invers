@@ -5,17 +5,24 @@ const InnerComponent = forwardRef((props, ref) => {
   const innerDivRef = useRef(null);
 
   useImperativeHandle(ref, () => ({
-    getInnerDiv: () => innerDivRef.current
+    getInnerDiv: () => innerDivRef.current,
+    setInnerDivHeight: (height) => {
+      if (innerDivRef.current) {
+        innerDivRef.current.style.height = height;
+      }
+    },
+    getFirstChild: () => {
+      if (innerDivRef.current) {
+        return innerDivRef.current.firstElementChild;
+      }
+      return null;
+    }
   }));
 
   return (
-    <div>
-      <div ref={innerDivRef} style={{ height: '150px', backgroundColor: 'lightblue' }}>
-        المنت داخلی
-      </div>
-      <div style={{ height: '850px' }}>
-        محتوای دیگر
-      </div>
+    <div ref={innerDivRef} style={{ height: '150px', backgroundColor: 'lightblue' }}>
+      <div>فرزند اول</div>
+      <div>فرزند دوم</div>
     </div>
   );
 });
