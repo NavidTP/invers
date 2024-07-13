@@ -1,25 +1,29 @@
+// ParentComponent.js
 import React, { useRef } from 'react';
+import ChildComponent from './ChildComponent';
 
-const App = () => {
-  const refs = useRef([]);
+const ParentComponent = () => {
+    const childRefs = useRef([]);
 
-  const handleHeightChange = (newHeight) => {
-    refs.current.forEach(ref => {
-      if (ref) {
-        ref.style.height = `${newHeight}px`;
-      }
-    });
-  };
+    const changeHeights = () => {
+        childRefs.current.forEach(ref => {
+            if (ref) {
+                ref.setHeight(100); // ارتفاع مورد نظر شما
+            }
+        });
+    };
 
-  return (
-    <div>
-      <button onClick={() => handleHeightChange(200)}>تغییر ارتفاع به 200</button>
-      <button onClick={() => handleHeightChange(300)}>تغییر ارتفاع به 300</button>
-      <div ref={(el) => refs.current[0] = el} className="my-element">المان 1</div>
-      <div ref={(el) => refs.current[1] = el} className="my-element">المان 2</div>
-      <div ref={(el) => refs.current[2] = el} className="my-element">المان 3</div>
-    </div>
-  );
+    return (
+        <div>
+            {Array.from({ length: 5 }).map((_, index) => (
+                <ChildComponent
+                    key={index}
+                    ref={el => childRefs.current[index] = el}
+                />
+            ))}
+            <button onClick={changeHeights}>Change Heights</button>
+        </div>
+    );
 };
 
-export default App;
+export default ParentComponent;
