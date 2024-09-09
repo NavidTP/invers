@@ -1,29 +1,96 @@
-// ParentComponent.js
-import React, { useRef } from 'react';
-import ChildComponent from './ChildComponent';
+import React from "react";
 
-const ParentComponent = () => {
-    const childRefs = useRef([]);
+const InputNumber = (props) => {
+  const {
+    field,//formik
+    form,//formik
+    label,
+    placeholder,
+    error,
+    value,
+    onNormalChange,
+    ...rest
+  } = props;
 
-    const changeHeights = () => {
-        childRefs.current.forEach(ref => {
-            if (ref) {
-                ref.setHeight(100); // ارتفاع مورد نظر شما
-            }
-        });
-    };
+  const handleChange = (e) => {
+    console.log("dakhel")
+    onNormalChange(e)
+  };
 
-    return (
-        <div>
-            {Array.from({ length: 5 }).map((_, index) => (
-                <ChildComponent
-                    key={index}
-                    ref={el => childRefs.current[index] = el}
-                />
-            ))}
-            <button onClick={changeHeights}>Change Heights</button>
-        </div>
-    );
+  return (
+    <div>
+      <label>{label}</label>
+      <input
+        type="number"
+        onChange={handleChange}
+        placeholder={placeholder}
+        value={form ? field.value : value}
+        {...field}
+        {...rest}
+      />
+      {error && <div style={{ color: "red" }}>{error}</div>}
+    </div>
+  );
 };
 
-export default ParentComponent;
+export default InputNumber;
+
+
+
+import React from "react";
+import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
+import InputNumber from "./component/InputNumber";
+
+function App() {
+  const validationSchema = Yup.object({
+    name: Yup.string().required("Name is required"),
+  });
+
+  const initialValues = {
+    name: "",
+  };
+
+  const onSubmit = (values) => {
+    console.log(values);
+  };
+
+  const onChangeHandler = (value, setFieldValue) => {
+    const newValue = value * 2;
+    console.log("New Value:", newValue);
+    setFieldValue("name", newValue);        
+  };
+
+  const exapmleOnChange = (e) => {
+    console.log("sssssss");
+  };
+
+  return (
+    <div>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={onSubmit}
+      >
+        {({ errors, touched, setFieldValue }) => (
+          <Form>
+            <div>
+              <Field
+                name="name"
+                component={InputNumber}
+                placeholder="Enter your name"
+                error={errors.name && touched.name ? errors.name : null}
+                onChange={(e) => onChangeHandler(e.target.value, setFieldValue)}
+              />
+            </div>
+            <button type="submit">Submit</button>
+          </Form>
+        )}
+      </Formik>
+
+      <InputNumber placeholder={"wwwwww"} onNormalChange={exapmleOnChange} />
+    </div>
+  );
+}
+
+export default App;
