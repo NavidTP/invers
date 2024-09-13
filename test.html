@@ -1,6 +1,6 @@
-const ImageUploader = ({id , name}) => {
+const ImageUploader = ({ id, name, label }) => {
   const [image, setImage] = useState(null);
-  const [fileName, setFileName] = useState('');
+  const [fileName, setFileName] = useState("");
 
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {
@@ -15,37 +15,66 @@ const ImageUploader = ({id , name}) => {
 
       reader.readAsDataURL(file);
     } else {
-      setFileName(''); 
-      setImage(null); 
+      setFileName("");
+      setImage(null);
     }
   };
 
   return (
-    <div>
-      <label htmlFor="file-upload" style={{ display: 'block', marginBottom: '8px' }}>
-        {fileName || 'انتخاب تصویر'}
-      </label>
-      <input
-        id="file-upload"
-        type="file"
-        accept="image/*"
-        onChange={handleImageChange}
-        style={{ display: 'none' }} 
-      />
-      <button
-        type="button"
-        onClick={() => document.getElementById('file-upload').click()}
-        style={{ marginBottom: '8px' }}
+    <div className={Classes["imageContainer"]}>
+      <div
+        onClick={() => document.getElementById("file-upload").click()}
+        className={Classes["div1"]}
       >
-        انتخاب تصویر
-      </button>
-      {image && (
-        <div style={{ marginTop: '20px' }}>
-          <img src={image} alt="Selected" style={{ maxWidth: '100%', height: 'auto' }} />
+        <img className={Classes["img"]} src={image} alt="Selected" />
+        {/* <label htmlFor="file-upload" style={{ display: 'block', marginBottom: '8px' }}>
+        {fileName || 'انتخاب تصویر'}
+      </label> */}
+        <input
+          id="file-upload"
+          type="file"
+          accept="image/*"
+          onChange={handleImageChange}
+          style={{ display: "none" }}
+        />
+
+        <div className={Classes["contentParent"]}>
+          {/* <CustomIcon/> */}
+          <p>{label}</p>
+          <span>*</span>
         </div>
-      )}
+      </div>
+<div>+</div>
+      {/* <CustomIcon/> */}
     </div>
   );
 };
 
 export default ImageUploader;
+
+.imageContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px;
+    width: 343px;
+    border-radius: 10px;
+    border:  1px solid #BDBDBD;
+}
+
+.img{
+    width: 65px;
+    height: 53px;
+    border-radius: 7px;
+    border: 1px solid #D9D9D9;
+}
+
+.div1{
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.contentParent{
+    display: flex;
+}
