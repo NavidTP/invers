@@ -1,48 +1,76 @@
-import React, { useEffect, useRef } from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import React, { useEffect, useState } from "react";
+import "./ArrowSteps.css";
 
-function App() {
-  const items = [
-    { title: "Title 1" },
-    { title: "Title 2" },
-    { title: "Title 3" },
-  ];
-
-  const sliderRef = useRef(null);
-
-  const settings = {
-    dots: true,
-    infinite: false,
-    rtl: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
-
-  useEffect(() => {
-    if (sliderRef.current) {
-      sliderRef.current.slickGoTo(2);
-    }
-  }, [items]);
-
+const Test = () => {
   return (
-    <div>
-      <h2>React Slick Example</h2>
-      <Slider ref={sliderRef} {...settings}>
-        {items.map((item, index) => (
-          <div
-            key={index}
-            className="slide-item"
-            style={{ border: "2px solid #2c2" }}
-          >
-            <h3>{item.title}</h3>
-          </div>
-        ))}
-      </Slider>
-    </div>
-  );
-}
+    // <svg
+    //   xmlns="http://www.w3.org/2000/svg"
+    //   width="274"
+    //   height="80"
+    //   viewBox="0 0 274 80"
+    //   fill="none"
+    // >
+    //   <path
+    //     fillRule="evenodd"
+    //     clipRule="evenodd"
+    //     d="M20.506 4.163C21.193 2.834 22.564 2 24.06 2h242.043c2.996 0 4.929 3.174 3.553 5.837l-15.16 29.326c-.596 1.152-.596 2.521 0 3.674l15.16 29.326c1.376 2.662-.557 5.837-3.553 5.837H24.06c-1.495 0-2.866-.834-3.553-2.163L3.447 40.837c-.596-1.152-.596-2.521 0-3.674L20.506 4.163Z"
+    //     fill="#2B9570"
+    //   />
+    // </svg>
 
-export default App;
+    // <svg
+    //   xmlns="http://www.w3.org/2000/svg"
+    //   width="274"
+    //   height="80"
+    //   viewBox="0 0 274 80"
+    //   fill="none"
+    // >
+    //   <path
+    //     fillRule="evenodd"
+    //     clipRule="evenodd"
+    //     d="M20.506 4.163C21.193 2.834 22.564 2 24.06 2h242.043c2.996 0 4.929 3.174 3.553 5.837l-15.16 29.326c-.596 1.152-.596 2.521 0 3.674l15.16 29.326c1.376 2.662-.557 5.837-3.553 5.837H24.06c-1.495 0-2.866-.834-3.553-2.163L3.447 40.837c-.596-1.152-.596-2.521 0-3.674L20.506 4.163Z"
+    //     fill="none"
+    //     stroke="#2B9570"
+    //     strokeWidth="2"
+    //   />
+    // </svg>
+
+    // <svg
+    //   xmlns="http://www.w3.org/2000/svg"
+    //   width="273"
+    //   height="80"
+    //   viewBox="0 0 273 80"
+    //   fill="none"
+    // >
+    //   <path
+    //     fillRule="evenodd"
+    //     clipRule="evenodd"
+    //     d="M269.226 6C269.226 3.791 267.435 2 265.226 2H23.841C22.338 2 20.962 2.843 20.278 4.182L3.437 37.182c-.583 1.142-.583 2.494 0 3.636L20.278 73.818C20.962 75.157 22.338 76 23.841 76H265.226C267.435 76 269.226 74.209 269.226 72V6Z"
+    //     fill="none"
+    //     stroke="#2B9570"
+    //     strokeWidth="2"
+    //   />
+    // </svg>
+
+  //   <svg
+  //   xmlns="http://www.w3.org/2000/svg"
+  //   width="273"
+  //   height="80"
+  //   viewBox="0 0 273 80"
+  //   fill="none"
+  // >
+  //   <path
+  //     fillRule="evenodd"
+  //     clipRule="evenodd"
+  //     d="M269.407 7.94211C270.888 5.27599 268.96 2 265.91 2H6.99973C4.79056 2 2.99973 3.79086 2.99973 6V72C2.99973 74.2091 4.79056 76 6.99969 76H265.91C268.96 76 270.888 72.724 269.407 70.0579L253.237 40.9421C252.566 39.7343 252.566 38.2657 253.237 37.0579L269.407 7.94211Z"
+  //     fill="none"
+  //     stroke="#2B9570"
+  //     strokeWidth="2"
+  //   />
+  // </svg>
+
+
+  );
+};
+
+export default Test;
